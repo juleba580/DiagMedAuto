@@ -1,0 +1,147 @@
+﻿<Window x:Class="DiagMedAuto.Views.AccueilWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DiagMedAuto.Views" xmlns:viewmodels="clr-namespace:DiagMedAuto.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AjoutPatientViewModel}"
+        mc:Ignorable="d"
+        Title="Main Window" Height="555" Width="800">
+    <DockPanel>
+        <!-- Menu -->
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_Fichier">
+                <MenuItem Header="_Ouvrir..." Click="OpenFile_Click"/>
+                <MenuItem Header="_Quitter" Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Client">
+                <MenuItem Header="_Ajouter une entité" Click="AddEntity_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Onglets -->
+        <TabControl>
+            <!-- Accueil -->
+            <TabItem Header="Accueil">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="402.606"/>
+                        <RowDefinition Height="411.394"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Image -->
+                    <!-- Image floutee -->
+                    <Image Source="C:\Users\Bsmok\Desktop\projet_cs\DiagMedAuto\DiagMedAuto\images\banmed.jpg" 
+               VerticalAlignment="Center" 
+               HorizontalAlignment="Center" 
+               Grid.RowSpan="2">
+                        <Image.Effect>
+                            <BlurEffect Radius="5"/>
+                            <!-- Rayon de flou -->
+                        </Image.Effect>
+                    </Image>
+                    <!-- Message -->
+                    <TextBlock Text="{Binding Prenom, StringFormat='Bienvenue Dr {0} !'}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="black" FontSize="60"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Gestion des entités">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Content="Ajouter" Click="OpenAjoutPatientForm_Click" HorizontalAlignment="Left" Margin="10" Width="100"/>
+                    <Button Content="Afficher patients" Click="OpenAfficherPatient_Click" HorizontalAlignment="center" Margin="10" Width="100"/>
+                    <Button Content="Afficher dossiers" Click="OpenDossierPatient_Click" HorizontalAlignment="right" Margin="10" Width="100"/>
+
+                </Grid>
+            </TabItem>
+
+
+            <!-- Entrainement et perfor -->
+            <TabItem Header="Entrainement et performances">
+                <Grid>
+                    <TextBlock Text="Entrainement et performances ici !" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+            </TabItem>
+
+            <!-- Effectuer une predict -->
+            <TabItem Header="Effectuer une prédiction">
+                <Grid>
+                    <TextBlock Text="Effectuer une prédiction ici !" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Grid>
+            </TabItem>
+
+            <!-- Onglet Modification des infos person -->
+            <TabItem Header="Modification Vos infos personnelles" Height="20" VerticalAlignment="Top">
+                <Grid Margin="20,0,20,0" Height="682">
+                    <!-- Champs d'information du user -->
+                    <StackPanel Margin="210,0,210,0">
+                        <StackPanel.Resources>
+                            
+                            <Style TargetType="Label">
+                                <Setter Property="Width" Value="80"/>
+                                <Setter Property="HorizontalAlignment" Value="Right"/>
+                                <Setter Property="Margin" Value="0 0 10 0"/>
+                            </Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Width" Value="180"/>
+                                <Setter Property="Margin" Value="0 0 0 10"/>
+                            </Style>
+                        </StackPanel.Resources>
+                  
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Prénom:"/>
+                            <TextBox x:Name="txtPrenom" Text="{Binding Prenom, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Nom:"/>
+                            <TextBox x:Name="txtNom" Text="{Binding Nom, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Date de naissance:"/>
+                            <DatePicker x:Name="txtDateNaissance" SelectedDate="{Binding DateDeNaissance, UpdateSourceTrigger=PropertyChanged}" Width="181"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Ville:"/>
+                            <TextBox x:Name="txtVille" Text="{Binding Ville, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Email:"/>
+                            <TextBox x:Name="txtEmail" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Hôpital:"/>
+                            <TextBox x:Name="txtHopital" Text="{Binding Hopital, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        
+                                           
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Civilité:"/>
+                            <ComboBox Text="{Binding Civilite, UpdateSourceTrigger=PropertyChanged}" Width="180">
+                                <ComboBoxItem Content="Monsieur"/>
+                                <ComboBoxItem Content="Madame"/>
+                            </ComboBox>
+                        </StackPanel>
+
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Spécialité:"/>
+                            <TextBox x:Name="txtSpecialite" Text="{Binding Specialite, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <!-- Bouton Enregistrer -->
+                        <Button Content="Modifier" Click="Enregistrer_Click" Margin="0 20 0 0" Width="83" Background="#FF4BED1F" FontWeight="Bold" Foreground="Black"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+
+
+
+
+
+        </TabControl>
+
+    </DockPanel>
+</Window>

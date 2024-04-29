@@ -1,0 +1,36 @@
+﻿<Window x:Class="DiagMedAuto.Views.DossierPatientForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DiagMedAuto.Views"
+        mc:Ignorable="d"
+        Title="DossierPatientForm" Height="450" Width="900">
+    <Grid>
+        <!-- Fenêtre pour afficher  -->
+        <DataGrid ItemsSource="{Binding Patients}" AutoGenerateColumns="False" SelectionChanged="DataGrid_SelectionChanged_1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Prénom" Binding="{Binding Prenom}" />
+                <DataGridTextColumn Header="Nom" Binding="{Binding Nom}" />
+                <DataGridTextColumn Header="Telephone" Binding="{Binding Telephone}" />
+                <DataGridTextColumn Header="Medecin Traitant" Binding="{Binding Medecin}" />
+                <DataGridTextColumn Header="Chest Pain" Binding="{Binding cp}" />
+                <DataGridTextColumn Header="Thalassemia" Binding="{Binding thal }" />
+                <DataGridTextColumn Header="Number of Major Vessels" Binding="{Binding ca}" />
+                <DataGridTextColumn Header="oldpeak" Binding="{Binding oldpeak}" />
+                <DataGridTextColumn Header="thalach" Binding="{Binding thalach}" />
+                
+                <DataGridTemplateColumn Header="Actions">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Modifier" Command="{Binding DataContext.ModifyCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Margin="5"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>
